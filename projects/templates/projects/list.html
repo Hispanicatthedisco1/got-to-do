@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <main>
-        <div>
-            <h1>My Projects</h1>
-            <p>
-                <a href="{% url 'create_project' %}">Create a new project</a>
-            </p>
-            {% if projects.all|length < 1 %} <p>You are not assigned to any projects</p>
-                {% else %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Number of tasks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
+{% block content %}
+<main>
+    <div>
+        <h1>My Projects</h1>
+        <p>
+            <a href="{% url 'create_project' %}">Create a new project</a>
+        </p>
+        {% if projects.all|length < 1 %} <p>You are not assigned to any projects</p>
+            {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number of tasks</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {% for project in projects %}
                     <tr>
                         <td>
@@ -33,10 +25,9 @@
                         <td>{{ project.tasks.all|length }}</td>
                     </tr>
                     {% endfor %}
-                </table>
-                {% endif %}
-        </div>
-    </main>
-</body>
-
-</html>
+                </tbody>
+            </table>
+            {% endif %}
+    </div>
+</main>
+{% endblock content %}

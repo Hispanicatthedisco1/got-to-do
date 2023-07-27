@@ -29,10 +29,10 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect()
+    return redirect("login")
 
 
-def signup(request):
+def user_signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -48,7 +48,7 @@ def signup(request):
 
                 login(request, user)
 
-                return redirect("home")
+                return redirect("list_projects")
             else:
                 form.add_error("the passwords do not math")
 

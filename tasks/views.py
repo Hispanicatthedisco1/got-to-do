@@ -15,7 +15,8 @@ def create_task(request):
             return redirect("list_projects")
     else:
         form = TaskForm()
-    return render(request, "task/create.html", {"form": form})
+    context = {"form": form}
+    return render(request, "tasks/create.html", context)
 
 
 @login_required
